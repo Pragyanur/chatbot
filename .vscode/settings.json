@@ -1,6 +1,8 @@
 {
     "python.pythonPath": "C:\\Users\\Sol.Lozano\\.conda\\envs\\python36\\python.exe",
-    "workbench.editorAssociations": [
-    
-    ]
+    "workbench.editorAssociations": [],
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "python.formatting.provider": "none"
 }

@@ -1,15 +1,15 @@
-#Import all packages we'll need. 
 import json
 import numpy as np
 import random
 import nltk
-import utils as u
-nltk.download('punkt')
-nltk.download('wordnet')
-
 from keras.models import Sequential
-from keras.layers import Dense, Activation, Dropout
+from keras.layers import Dense, Dropout
 from keras.optimizers import SGD
+import utils as u
+# nltk.download('punkt')
+# nltk.download('wordnet')
+
+
 
 
 class ChatModel:
@@ -21,6 +21,7 @@ class ChatModel:
         #Call lemmatizing procedure
         w, words, documents, classes, lemmatizer = self.lemmatizing(w, words, documents, classes)
 
+        
         #Call training_data procedure
         self._train_x, self._train_y = self.training_data(w, words, documents, classes, lemmatizer)
 

@@ -1,9 +1,7 @@
 from chat_model import ChatModel as chatModel
 import nltk
-import pickle
 import numpy as np
 from keras.models import load_model
-import json
 import random
 import utils as u
 
@@ -13,9 +11,9 @@ class ChatApp:
         self.cM = chatModel()
         self._lemmatizer = nltk.stem.WordNetLemmatizer()
         self._model = load_model('chatbot_model.h5')
-        self._intents = self.cM.get_intents() 
-        self._words = u.load_pickle('pickles\words.pkl')
-        self._classes = u.load_pickle('pickles\classes.pkl')
+        self._intents = self.cM.get_intents()
+        self._words = u.load_pickle('pickles/words.pkl')
+        self._classes = u.load_pickle('pickles/classes.pkl')
         
     def clean_up_sentence(self,sentence):
         # tokenize the pattern - split words into array
@@ -44,7 +42,6 @@ class ChatApp:
         # filter out predictions below a threshold
         p = self.bow(sentence, self._words, show_details=False)
         res = self._model.predict(np.array([p]))[0]
-        
         results = [[i,r] for i,r in enumerate(res) if r>ERROR_THRESHOLD]
         # sort by strength of probability
         results.sort(key=lambda x: x[1], reverse=True)
@@ -58,7 +55,7 @@ class ChatApp:
         tag = ints[0]['intent']
         list_of_intents = intents_json['intents']
         for i in list_of_intents:
-            if(i['tag']== tag):
+            if i['tag'] == tag :
                 result = random.choice(i['responses'])
                 break
         return result
@@ -67,6 +64,3 @@ class ChatApp:
         ints = self.predict_class(text, self._model)
         res = self.getResponse(ints, self._intents)
         return res
-
-
-
