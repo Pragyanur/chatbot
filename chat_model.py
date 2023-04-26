@@ -33,7 +33,7 @@ class ChatModel:
         words = []
         classes = []
         documents = []
-        intents = json.loads(open(url).read())
+        intents = json.loads(open(url, encoding='UTF-8').read())
 
         for intent in intents["intents"]:
             for pattern in intent["patterns"]:
