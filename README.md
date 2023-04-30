@@ -1,6 +1,6 @@
 # chatbot
 
-Retrieval based chatbot using NLTK &amp Keras
+Retrieval based chatbot using NLTK and Keras
 
 ## Pre-requisite
 - keras sequential model
