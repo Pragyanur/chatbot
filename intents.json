@@ -20,7 +20,7 @@
          "context": [""]
         },
         {"tag": "options",
-         "patterns": ["How you could help me?", "What can you do?", "What help you provide?", "How can you be helpful?", "What support is offered"],
+         "patterns": ["How you could help me?", "What you can do?", "What help you provide?", "How you can be helpful?", "What support is offered"],
          "responses": ["I can guide you through Adverse drug reaction list, Blood pressure tracking, Hospitals and Pharmacies", "Offering support for Adverse drug reaction, Blood pressure, Hospitals and Pharmacies"],
          "context": [""]
         },
@@ -67,6 +67,11 @@
         {"tag": "search_hospital_by_type",
          "patterns": [],
          "responses": ["Loading hospital details"],
+         "context": [""]
+        },
+        {"tag": "chatgpt",
+         "patterns": ["can you do high level AI stuff", "Artificial intelligence bot", "Write me a code", "Write a program to do something", "Do this ", "chatgpt", "openai"],
+         "responses": ["check out chatGPT", "I can only do so little", "There are other options available on the internet", "Go for openAI's tools and services"],
          "context": [""]
         }
    ]
