@@ -10,8 +10,8 @@ class ChatApp:
     def __init__(self):
         self.cM = chatModel()
         self._lemmatizer = nltk.stem.WordNetLemmatizer()
-        self._model = load_model("chatbot_model.h5")
-        self._intents = self.cM.get_intents()
+        self._model = load_model("chatbot_model.h5")                                    # a model object in _model, here we put
+        self._intents = self.cM.get_intents()                                           # the trained model "chatbot_model.h5"
         self._words = u.load_pickle("pickles/words.pkl")
         self._classes = u.load_pickle("pickles/classes.pkl")
 
@@ -43,10 +43,10 @@ class ChatApp:
         ERROR_THRESHOLD = 0.25
         # filter out predictions below a threshold
         p = self.bow(sentence, self._words, show_details=False)
-        res = self._model.predict(np.array([p]))[0]
+        res = self._model.predict(np.array([p]))[0]                                 # model objects have a predict method that runs the ANN classifier
         results = [[i, r] for i, r in enumerate(res) if r > ERROR_THRESHOLD]
         # sort by strength of probability
-        results.sort(key=lambda x: x[1], reverse=True)
+        results.sort(key=lambda x: x[1], reverse = True)
         return_list = []
         for r in results:
             return_list.append(

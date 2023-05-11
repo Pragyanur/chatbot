@@ -33,7 +33,9 @@ class ChatModel:
         words = []
         classes = []
         documents = []
-        intents = json.loads(open(url, encoding='UTF-8').read())
+        intents = json.loads(
+            open(url, encoding="UTF-8").read()
+        )  # DEBUGGED warning: encoding
 
         for intent in intents["intents"]:
             for pattern in intent["patterns"]:
@@ -106,12 +108,21 @@ class ChatModel:
 
         # shuffle our features and turn into np.array
         random.shuffle(training)
-        training = np.array(training)
-        # create train and test lists. X - patterns, Y - intents
-        train_x = list(training[:, 0])
-        train_y = list(training[:, 1])
 
+        # !!!!!!!! faulty code below !!!!!!!!
+        # training = np.array(training)
+        # train_x = list(training[:, 0])
+        # train_y = list(training[:, 1])
+        # !!!!!!!! faulty code above !!!!!!!!
+
+        # DEBUGGED: changes in creating the training data
+
+        # create train and test lists. X - patterns, Y - intents
+
+        train_x = np.array([i[0] for i in training])
+        train_y = np.array([i[1] for i in training])
         print("Training data created")
+
         return train_x, train_y
 
     def training(self, train_x, train_y):
@@ -120,7 +131,9 @@ class ChatModel:
         # second layer 64 neurons and 3rd output layer contains number of neurons
         # equal to number of intents to predict output intent with softmax
         model = Sequential()
-        model.add(Dense(128, input_shape=(len(train_x[0]),), activation="relu"))
+        model.add(
+            Dense(128, input_shape=(len(train_x[0]),), activation="relu")
+        )  # input_shape is an iterator inside parenthesis
         model.add(Dropout(0.5))
         model.add(Dense(64, activation="relu"))
         model.add(Dropout(0.5))
@@ -136,7 +149,7 @@ class ChatModel:
             np.array(train_x), np.array(train_y), epochs=200, batch_size=5, verbose=1
         )
         model.save("chatbot_model.h5", hist)
-        print("modeseql created")
+        print("sequential model created")
 
         return model
 

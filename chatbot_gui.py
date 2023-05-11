@@ -9,10 +9,10 @@ def send():
     if msg != "":
         ChatLog.config(state=NORMAL)
         ChatLog.insert(END, "You: " + msg + "\n\n")
-        ChatLog.config(foreground="#442265", font=("Verdana", 12))
-        res = cA().chatbot_response(msg)
+        ChatLog.config(foreground="#442265", font=("Verdana", 12))                  # customize
+        res = cA().chatbot_response(msg)                                            # response = chatapp.chatbot_response(msg)
         ChatLog.insert(END, "Bot: " + res + "\n\n")
-        ChatLog.config(state=DISABLED)
+        ChatLog.config(state=DISABLED)                                              # customize
         ChatLog.yview(END)
 
 
