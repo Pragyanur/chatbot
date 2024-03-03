@@ -5,7 +5,6 @@ Retrieval based chatbot using NLTK and Keras
 ## Pre-requisite
 
 ### Knowledge of:
-- Accessing and reading json files
 - Pre-processing of text data using nltk lemmatizer and tokenizer
 - Keras sequential model
 - Creating training data
